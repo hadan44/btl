@@ -524,9 +524,10 @@ def foodHeuristic(state, problem):
         return 0
 
     currentPosition = state[0]
-
+    #print(foodGrid)
+    #print(foodPositions)
     # while foodPositions != []:
-    food_heuristic = []
+    food_distance = []
     for food in foodPositions:
         #small problem to search the path from current position to the food
         smallProblem = PositionSearchProblem(problem.startingGameState, costFn=lambda x: 1, start=currentPosition, goal=food, warn=False, visualize=False)
@@ -535,12 +536,10 @@ def foodHeuristic(state, problem):
         #length of array path to the food is the distance from current position to the food
         heuristic_cost = len(path)
 
-        food_heuristic.append(heuristic_cost)
-    # heuristic = 0
+        food_distance.append(heuristic_cost)
     # while foodPositions != []:
-
-
-    return max(food_heuristic)
+        
+    return max(food_distance)
 
 class ClosestDotSearchAgent(SearchAgent):
     "Search for all food using a sequence of searches"
