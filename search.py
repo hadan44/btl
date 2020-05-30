@@ -146,8 +146,9 @@ def uniformCostSearch(problem):
                 if neighbor[0] not in visited:
                     way = instruct + [neighbor[1]]
                     cost = problem.getCostOfActions(way)  
+                    # print("cost ",cost)
                     priorityQueue.update([neighbor[0],way],cost)
-
+                    
 def nullHeuristic(state, problem=None):
     """
     A heuristic function estimates the cost from the current state to the nearest
@@ -161,7 +162,7 @@ def aStarSearch(problem, heuristic=nullHeuristic):
     priorityQueue = util.PriorityQueue()
     visited = []
     cost = 0
-    priorityQueue.push([problem.getStartState(),[]],0 + heuristic(problem.getStartState(),problem))
+    priorityQueue.push([problem.getStartState(),[]],cost + heuristic(problem.getStartState(),problem))
     while not priorityQueue.isEmpty():
         current,instruct = priorityQueue.pop()
         if problem.isGoalState(current):
